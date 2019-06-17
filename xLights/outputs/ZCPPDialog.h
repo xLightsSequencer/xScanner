@@ -1,55 +1,53 @@
-#ifndef E131DIALOG_H
-#define E131DIALOG_H
+#ifndef ZCPPDIALOG_H
+#define ZCPPDIALOG_H
 
-//(*Headers(E131Dialog)
+//(*Headers(ZCPPDialog)
 #include <wx/button.h>
 #include <wx/checkbox.h>
-#include <wx/choice.h>
 #include <wx/dialog.h>
-#include <wx/radiobut.h>
 #include <wx/sizer.h>
 #include <wx/spinctrl.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 //*)
 
-class E131Output;
+class ZCPPOutput;
 class OutputManager;
+class ModelManager;
 
-class E131Dialog: public wxDialog
+class ZCPPDialog: public wxDialog
 {
-    E131Output* _e131;
+    ZCPPOutput* _zcpp;
     OutputManager* _outputManager;
+    ModelManager* _modelManager;
     void ValidateWindow();
 
 public:
 
-    E131Dialog(wxWindow* parent, E131Output* e131, OutputManager* outputManager, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
-    virtual ~E131Dialog();
+    ZCPPDialog(wxWindow* parent, ZCPPOutput* zcpp, OutputManager* outputManager, ModelManager* modelManager, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+    virtual ~ZCPPDialog();
 
-    //(*Declarations(E131Dialog)
+    //(*Declarations(ZCPPDialog)
     wxButton* Button_Cancel;
     wxButton* Button_Ok;
-    wxButton* VisualizeButton;
-    wxCheckBox* CheckBox_Auto_Channels;
+    wxButton* Button_Visualise;
+    wxCheckBox* CheckBoxAutoSizeOutput;
+    wxCheckBox* CheckBox_Multicast;
+    wxCheckBox* CheckBox_SupportSmartRemotes;
+    wxCheckBox* CheckBox_SupportVirtualStrings;
     wxCheckBox* CheckBox_SuppressDuplicates;
-    wxCheckBox* MultiE131CheckBox;
-    wxChoice* ControllerChoice;
-    wxRadioButton* RadioButtonMulticast;
-    wxRadioButton* RadioButtonUnicast;
-    wxSpinCtrl* SpinCtrl_LastChannel;
-    wxSpinCtrl* SpinCtrl_NumUniv;
+    wxCheckBox* CheckBox_SuppressSendingConfig;
+    wxSpinCtrl* SpinCtrl_Channels;
     wxSpinCtrl* SpinCtrl_Priority;
-    wxSpinCtrl* SpinCtrl_StartUniv;
-    wxStaticText* DescriptionStaticText;
-    wxStaticText* OneOutputLabel;
     wxStaticText* StaticText10;
+    wxStaticText* StaticText11;
     wxStaticText* StaticText1;
     wxStaticText* StaticText2;
     wxStaticText* StaticText3;
     wxStaticText* StaticText4;
     wxStaticText* StaticText5;
     wxStaticText* StaticText6;
+    wxStaticText* StaticText7;
     wxStaticText* StaticText8;
     wxStaticText* StaticText9;
     wxTextCtrl* TextCtrlIpAddr;
@@ -58,38 +56,36 @@ public:
 
 protected:
 
-    //(*Identifiers(E131Dialog)
+    //(*Identifiers(ZCPPDialog)
     static const long ID_STATICTEXT4;
-    static const long ID_STATICTEXT5;
-    static const long ID_RADIOBUTTON1;
-    static const long ID_RADIOBUTTON2;
     static const long ID_STATICTEXT1;
     static const long ID_TEXTCTRL_IP_ADDR;
-    static const long ID_STATICTEXT2;
-    static const long ID_SPINCTRL1;
     static const long ID_STATICTEXT3;
     static const long ID_SPINCTRL2;
-    static const long ID_STATICTEXT7;
-    static const long ID_CHECKBOX1;
-    static const long ID_STATICTEXT6;
-    static const long ID_SPINCTRL_LAST_CHANNEL;
     static const long ID_STATICTEXT8;
     static const long ID_TEXTCTRL_DESCRIPTION;
     static const long ID_STATICTEXT9;
     static const long ID_CHECKBOX2;
+    static const long ID_STATICTEXT2;
+    static const long ID_CHECKBOX1;
+    static const long ID_STATICTEXT5;
+    static const long ID_CHECKBOX3;
+    static const long ID_STATICTEXT6;
+    static const long ID_CHECKBOX4;
+    static const long ID_STATICTEXT7;
+    static const long ID_CHECKBOX5;
     static const long ID_STATICTEXT10;
-    static const long ID_SPINCTRL_PRIORITY;
-    static const long ID_CHOICE1;
+    static const long ID_CHECKBOX6;
     static const long ID_STATICTEXT11;
-    static const long ID_CHECKBOX_AUTO_CHANNELS;
+    static const long ID_SPINCTRL1;
+    static const long ID_BUTTON3;
     static const long ID_BUTTON1;
     static const long ID_BUTTON2;
-    static const long ID_BUTTON3;
     //*)
 
 private:
 
-    //(*Handlers(E131Dialog)
+    //(*Handlers(ZCPPDialog)
     void OnRadioButtonUnicastSelect(wxCommandEvent& event);
     void OnRadioButtonMulticastSelect(wxCommandEvent& event);
     void OnSpinCtrl_NumUnivChange(wxSpinEvent& event);
@@ -98,11 +94,11 @@ private:
     void OnMultiE131CheckBoxClick(wxCommandEvent& event);
     void OnButton_OkClick(wxCommandEvent& event);
     void OnButton_CancelClick(wxCommandEvent& event);
-    void OnVisualizeButtonClick(wxCommandEvent& event);
-    void OnControllerChoiceSelect(wxCommandEvent& event);
+    void OnSpinCtrl_ChannelsChange(wxSpinEvent& event);
+    void OnButton_VisualiseClick(wxCommandEvent& event);
     //*)
 
-    void SaveFields();
     DECLARE_EVENT_TABLE()
 };
+
 #endif
