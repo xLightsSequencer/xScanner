@@ -1,4 +1,4 @@
-APP_ICON ICON "../include/xcapture.ico"
-MAINICON ICON "../include/xcapture.ico"
+APP_ICON ICON "../include/xScanner.ico"
+MAINICON ICON "../include/xScanner.ico"
 
 #include "wx/msw/wx.rc"

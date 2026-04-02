@@ -4,45 +4,53 @@ on:
   push:
     tags:
     - '*'
+
   workflow_dispatch:
 
 jobs:
   build-linux:
+
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install g++ gcc build-essential libgtk-3-dev libunwind-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev freeglut3-dev libcurl4-openssl-dev libexpat1-dev libwebp-dev cbp2make
-      - name: Make
-        run: make -j 4
+      - run: docker pull ghcr.io/xlightssequencer/xlights-build-docker:master
+      - run: docker run --name buildvm ghcr.io/xlightssequencer/xlights-build-docker:master /bin/bash Recipe.xScanner.appimage
+      - run: 'docker cp buildvm:/xScanner/xScanner/AppImage/ /tmp/'
+      - run: ls -lh /tmp/AppImage
 
       - uses: ncipollo/release-action@v1
         with:
            allowUpdates: true
-           artifacts: "bin/xScanner"
+           artifacts: "/tmp/AppImage/*.AppImage"
            token: ${{ secrets.GITHUB_TOKEN }}
 
   build-windows:
    runs-on: windows-2022
+
    steps:
     - name: Checkout xScanner
       uses: actions/checkout@v4
       with:
           submodules: 'true'
+
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1
+
     - name: Download wxWidgets
       run:
         git clone --depth=1 --shallow-submodules --recurse-submodules -b xlights_2026.04 https://github.com/xLightsSequencer/wxWidgets ..\wxWidgets\
+
     - name: Build wxWidgets
       working-directory: ..\wxWidgets\
       run: msbuild /m .\build\msw\wx_vc17.sln /p:Configuration="Release" /p:Platform="x64"
+
     - name: Build xScanner
       shell: cmd
       working-directory: build_scripts\msw
       run: call build_xScanner_x64.cmd
+
     - name: Build Installer
       working-directory: build_scripts\msw
       run: ISCC.exe xScanner_64bit.iss

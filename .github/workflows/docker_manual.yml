@@ -1,20 +1,21 @@
-name: Linux Manual Build
+name: Linux Docker Manual
 on:
   workflow_dispatch:
 
 jobs:
   build-linux:
+
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install g++ gcc build-essential libgtk-3-dev libunwind-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev freeglut3-dev libcurl4-openssl-dev libexpat1-dev libwebp-dev cbp2make
-      - name: Make
-        run: make -j $(nproc)
+      - run: docker pull ghcr.io/xlightssequencer/xlights-build-docker:master
+      - run: docker run --name buildvm ghcr.io/xlightssequencer/xlights-build-docker:master /bin/bash Recipe.xScanner.appimage
+      - run: 'docker cp buildvm:/xScanner/xScanner/AppImage/ /tmp/'
+      - run: ls -lh /tmp/AppImage
 
       - uses: actions/upload-artifact@v4
         with:
-          name: xScanner_Linux
-          path: 'bin/xScanner'
+          name: xScanner_AppImage
+          path: '/tmp/AppImage/*.AppImage'
