@@ -24,14 +24,14 @@
 #include <wx/dataview.h>
 
 #include "xScannerMain.h"
-#include "../xLights/xLightsVersion.h"
-#include "../xLights/outputs/ControllerEthernet.h"
-#include "../xLights/utils/UtilFunctions.h"
-#include "../xLights/ui/wxUtilities.h"
-#include "../xLights/utils/ip_utils.h"
-#include "../xLights/controllers/BaseController.h"
+#include "../shared/xScannerVersion.h"
+#include "../shared/outputs/ControllerEthernet.h"
+#include "../shared/utils/UtilFunctions.h"
+#include "../shared/ui/wxUtilities.h"
+#include "../shared/utils/ip_utils.h"
+#include "../shared/controllers/BaseController.h"
 
-#include "../xLights/automation/automation.h"
+#include "../shared/automation/automation.h"
 
 #include <log.h>
 
@@ -40,11 +40,11 @@
 #include <arpa/inet.h>
 #endif
 
-#include "../include/xLights.xpm"
-#include "../include/xLights-16.xpm"
-#include "../include/xLights-32.xpm"
-#include "../include/xLights-64.xpm"
-#include "../include/xLights-128.xpm"
+#include "../include/xScanner.xpm"
+#include "../include/xScanner-16.xpm"
+#include "../include/xScanner-32.xpm"
+#include "../include/xScanner-64.xpm"
+#include "../include/xScanner-128.xpm"
 
 //(*InternalHeaders(xScannerFrame)
 #include <wx/intl.h>

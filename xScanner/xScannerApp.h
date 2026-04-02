@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "../common/xlBaseApp.h"
+#include "../common/xScannerBaseApp.h"
 
 
 class xScannerApp : public xlBaseApp

@@ -15,7 +15,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           seconds: 86400
-          branch: 'master'
+          branch: 'main'
       - name: Set output if new commits found
         if: ${{ steps.check-new-commits.outputs.has-new-commits == 'true' }}
         run: echo "::set-output name=should_run::true"
@@ -55,7 +55,7 @@ jobs:
         name: xScanner_x64_Installer
         path: 'build_scripts\msw\output\**'
     - name: Create prerelease
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"

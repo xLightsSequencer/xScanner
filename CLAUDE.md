@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 xScanner is a network scanner for lighting controllers. It discovers and identifies lighting hardware on the network using multiple protocols (E1.31, Art-Net, DDP, etc.) and can query controller capabilities.
 
-Built on wxWidgets 3.3 (custom fork). Part of the xLights family of tools.
+Built on wxWidgets 3.3 (custom fork).
 
 **Supported platforms:** Linux (Debian 12 / Ubuntu 24.04), Windows 10+.
 
@@ -32,7 +32,7 @@ call build_xScanner_x64.cmd
 ```
 
 ### wxSmith Generated Code
-Some dialogs use wxSmith (wxWidgets RAD tool). Generated code is delimited by `//(* ... //*)` guards in `.cpp`/`.h` files. **Any changes within these guards MUST also be reflected in the corresponding `.wxs` file**. Otherwise the changes will be overwritten the next time the `.wxs` file is opened in wxSmith.
+Some dialogs use wxSmith (wxWidgets RAD tool). Generated code is delimited by `//(* ... //*)` guards in `.cpp`/`.h` files. **Any changes within these guards MUST also be reflected in the corresponding `.wxs` file**.
 
 wxSmith files in this repo:
 - `xScanner/wxsmith/xScannerframe.wxs`
@@ -53,13 +53,15 @@ xScanner requires these defines to compile shared code correctly:
 ## Repository Structure
 
 - **`xScanner/`** — application source files (scanner, MAC lookup, network scan workers)
-- **`xLights/outputs/`** — all output protocol implementations (ArtNet, E131, DDP, DMX, LOR, etc.)
-- **`xLights/controllers/`** — controller hardware handlers (Falcon, FPP, Pixlite)
-- **`xLights/automation/`** — automation/scripting support
-- **`xLights/utils/`** — shared utility code (networking, strings, curl, job pool)
-- **`xLights/ui/`** — shared UI utilities, discovery, export settings
-- **`common/`** — base application framework (crash handling)
-- **`xSchedule/wxJSON/`** — JSON parsing library (includes jsonwriter)
+- **`shared/`** — shared code (originally from xLights, organized for xScanner)
+  - `shared/xScannerVersion.h/.cpp` — version constants (`xscanner_version_string`, etc.)
+  - `shared/outputs/` — all output protocol implementations (ArtNet, E131, DDP, DMX, LOR, etc.)
+  - `shared/controllers/` — controller hardware handlers (Falcon, FPP, Pixlite)
+  - `shared/automation/` — automation/scripting support
+  - `shared/utils/` — utilities (`UtilFunctions`, `CurlManager`, `ip_utils`, `string_utils`, `JobPool`, `Parallel`, `TraceLog`, `SpecialOptions`, `ExternalHooks.h`)
+  - `shared/ui/` — `wxUtilities`, `Discovery`, `ExportSettings`
+- **`common/`** — base application framework (`xScannerBaseApp`, crash handling)
+- **`json/wxJSON/`** — JSON parsing library (includes jsonwriter)
 - **`include/`** — shared headers (globals.h, log.h), icon assets, nlohmann/json
 - **`dependencies/`** — pugixml (submodule), spdlog (submodule), stb image headers
 
@@ -72,10 +74,6 @@ xScanner requires these defines to compile shared code correctly:
 - 4-space indentation, no tabs
 - No column limit (ColumnLimit: 0)
 - Opening braces on same line (K&R style)
-- Match the style of nearby code
-- Avoid purely cosmetic changes in PRs
-
-## Prefer std::* Over wx* Types
 
 - **Strings**: Use `std::string` instead of `wxString`. Convert at wx API boundaries with `.ToStdString()` / `wxString(str)`.
 - **Collections**: Use `std::vector`, `std::map`, etc. instead of `wxArrayString`, `wxList`, etc.
@@ -84,4 +82,4 @@ xScanner requires these defines to compile shared code correctly:
 
 ## Key Dependencies
 
-wxWidgets 3.3 (custom fork `xLightsSequencer/wxWidgets`), spdlog, libcurl, pugixml, nlohmann/json.
+wxWidgets 3.3 (custom fork `xLightsSequencer/wxWidgets`, branch `xlights_2026.04`), spdlog, libcurl, pugixml, nlohmann/json.

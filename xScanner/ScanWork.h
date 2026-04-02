@@ -11,7 +11,7 @@
 #include <mutex>
 #include <atomic>
 
-#include "../xLights/outputs/OutputManager.h"
+#include "../shared/outputs/OutputManager.h"
 
 // seed with ... xLights defined stuff
 // seed with networks we are attached to

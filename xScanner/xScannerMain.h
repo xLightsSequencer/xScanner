@@ -34,7 +34,7 @@
 #include <wx/treelist.h>
 #include <wx/file.h>
 
-#include "../common/xlBaseApp.h"
+#include "../common/xScannerBaseApp.h"
 #include "ScanWork.h"
 
 class wxDebugReportCompress;
