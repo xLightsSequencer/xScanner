@@ -9,6 +9,7 @@ MKDIR           = mkdir -p
 CHK_DIR_EXISTS  = test -d
 INSTALL_PROGRAM = install -m 755 -p
 DEL_FILE        = rm -f
+ICON_SIZES      = 16x16 32x32 64x64 128x128 256x256
 SUDO            = `which sudo`
 
 WXWIDGETS_TAG=xlights_2026.04
@@ -45,10 +46,12 @@ install:
 	-$(INSTALL_PROGRAM) -D bin/xscanner.desktop $(DESTDIR)/${PREFIX}/share/applications/xscanner.desktop
 	install -d -m 755 $(DESTDIR)/${PREFIX}/share/xScanner
 	cp xScanner/MacLookup.txt $(DESTDIR)/${PREFIX}/share/xScanner/MacLookup.txt
+	$(foreach size, $(ICON_SIZES), install -D -m 644 images/icons/$(size).png $(DESTDIR)/${PREFIX}/share/icons/hicolor/$(size)/apps/xscanner.png ; )
 
 uninstall:
 	-$(DEL_FILE) $(DESTDIR)/${PREFIX}/bin/xScanner
 	-$(DEL_FILE) $(DESTDIR)/${PREFIX}/share/applications/xscanner.desktop
+	$(foreach size, $(ICON_SIZES), $(DEL_FILE) $(DESTDIR)/${PREFIX}/share/icons/hicolor/$(size)/apps/xscanner.png ; )
 
 #############################################################################
 

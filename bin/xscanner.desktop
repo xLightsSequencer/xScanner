@@ -5,6 +5,6 @@ Exec=xScanner %f
 Comment=Scan Network for Controllers
 Name=xScanner
 Terminal=false
-Icon=xlights
+Icon=xscanner
 Categories=AudioVideo;
 MimeType=text/xml;
