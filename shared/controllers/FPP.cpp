@@ -36,7 +36,9 @@
 #include <wx/secretstore.h>
 #include <wx/progdlg.h>
 #include <wx/gauge.h>
+#ifndef DISCOVERYONLY
 #include <zstd.h>
+#endif
 #include <wx/debugrpt.h>
 
 #include "FPP.h"
