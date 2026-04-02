@@ -40,9 +40,11 @@
 #include <wx/debugrpt.h>
 
 #include "FPP.h"
+#ifndef DISCOVERYONLY
 #include "../models/CustomModel.h"
 #include "../models/Model.h"
 #include "../models/MatrixModel.h"
+#endif
 #include "../shared/outputs/OutputManager.h"
 #include "../shared/outputs/Output.h"
 #include "../shared/outputs/E131Output.h"
@@ -58,27 +60,35 @@
 #include "Parallel.h"
 #include "ControllerCaps.h"
 #include "../shared/utils/ExternalHooks.h"
+#ifndef DISCOVERYONLY
 #include "TempFileManager.h"
+#endif
 
 #include <log.h>
+#ifndef DISCOVERYONLY
 #include "ControllerUploadData.h"
 #include "../shared/controllers/FPPUploadProgressDialog.h"
 #include "../render/FSEQFile.h"
+#endif
 #include "ui/setup/Discovery.h"
 #include "../shared/utils/CurlManager.h"
 #include "../shared/utils/ip_utils.h"
 
+#ifndef DISCOVERYONLY
 #include "../models/GridlinesObject.h"
 #include "../models/RulerObject.h"
 #include "../models/ImageObject.h"
 #include "../models/MeshObject.h"
 #include "../models/TerrainObject.h"
 #include "../XmlSerializer/XmlSerializer.h"
+#endif
 
 #include "Falcon.h"
+#ifndef DISCOVERYONLY
 #include "Minleon.h"
 #include "SanDevices.h"
 #include "J1Sys.h"
+#endif
 
 #include "../shared/utils/TraceLog.h"
 using namespace TraceLog;
@@ -151,6 +161,7 @@ FPP::~FPP() {
     }
 }
 
+#ifndef DISCOVERYONLY
 struct FPPWriteData {
     FPPWriteData() : data(nullptr), dataSize(0), curPos(0), file(nullptr),
         postData(nullptr), postDataSize(0), instance(nullptr), totalWritten(0), lastDone(0), cancelled(false) {}
@@ -236,6 +247,7 @@ static size_t read_callback(void *ptr, size_t size, size_t nmemb, void *userp) {
     struct FPPWriteData *dt = (struct FPPWriteData*)userp;
     return dt->readData(ptr, buffer_size);
 }
+#endif
 
 static size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* data) {
 
@@ -711,6 +723,7 @@ int FPP::PutToURL(const std::string& url, const std::string& val, const std::str
     return PutToURL(url, memBuffPost, contentType);
 }
 
+#ifndef DISCOVERYONLY
 bool FPP::updateProgress(int val, bool yield) {
     if (progress != nullptr) {
         progress->SetValue(val);
@@ -723,8 +736,9 @@ bool FPP::updateProgress(int val, bool yield) {
     }
     return false;
 }
+#endif
 
-
+#ifndef DISCOVERYONLY
 bool FPP::uploadFile(const std::string &utfFilename, const std::string &file) {
     
 
@@ -1000,6 +1014,7 @@ bool FPP::uploadOrCopyFile(const std::string &filename,
     }
     return uploadFile(filename, file);
 }
+#endif
 
 #ifndef DISCOVERYONLY
 // types

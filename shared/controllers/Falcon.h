@@ -17,10 +17,13 @@
 #include <nlohmann/json.hpp>
 
 #include "BaseController.h"
+#ifndef DISCOVERYONLY
 #include "ControllerUploadData.h"
+#endif
 
 class FalconString;
 class wxProgressDialog;
+class wxWindow;
 
 class Falcon : public BaseController
 {

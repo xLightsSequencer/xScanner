@@ -21,7 +21,7 @@
 
 #include <map>
 
-#include "../common/xlBaseApp.h"
+#include "../common/xScannerBaseApp.h"
 #include "JobPool.h"
 
 #ifdef LINUX
@@ -31,11 +31,11 @@
     #include <cxxabi.h>
 #endif
 
-#include "../shared/utils/ExternalHooks.h"
+#include "ExternalHooks.h"
 #include <log.h>
 #include "string_utils.h"
 
-#include "../utils/TraceLog.h"
+#include "TraceLog.h"
 using namespace TraceLog;
 
 
@@ -279,7 +279,7 @@ void JobPoolWorker::Entry()
     RemoveThreadName();
     m_logger->debug("JobPoolWorker done {}", oss.str());
     //clear trace messages for this thread
-    ClearTraceMessages();
+    //ClearTraceMessages(); // Not available in xScanner
 }
 
 void JobPoolWorker::ProcessJob(Job *job)

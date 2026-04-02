@@ -14,9 +14,7 @@
 #include "Output.h"
 #include "UtilFunctions.h"
 #include "../shared/utils/SpecialOptions.h"
-#include "../models/OutputModelManager.h"
 #include "NullOutput.h"
-#include "../models/ModelManager.h"
 
 #pragma region Constructors and Destructors
 ControllerNull::ControllerNull(OutputManager* om, pugi::xml_node node, const std::string& showDir) : Controller(om, node, showDir) {

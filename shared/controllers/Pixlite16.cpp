@@ -20,7 +20,9 @@
 #include "UtilFunctions.h"
 #include "../shared/ui/wxUtilities.h"
 #include <wx/socket.h>
+#ifndef DISCOVERYONLY
 #include "ControllerUploadData.h"
+#endif
 #include "../shared/outputs/ControllerEthernet.h"
 #include "ControllerCaps.h"
 #include "ui/setup/Discovery.h"

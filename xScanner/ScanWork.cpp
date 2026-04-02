@@ -9,7 +9,7 @@
 #endif
 
 #include "ScanWork.h"
-#include "../xLights/utils/Parallel.h"
+#include "../shared/utils/Parallel.h"
 #include "xScannerMain.h"
 #include "xScannerApp.h"
 #include "../shared/utils/CurlManager.h"

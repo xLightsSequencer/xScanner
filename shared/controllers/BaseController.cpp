@@ -12,18 +12,18 @@
 #include "BaseController.h"
 #include "ControllerCaps.h"
 #include "../shared/outputs/OutputManager.h"
+#ifndef DISCOVERYONLY
 #include "../models/ModelManager.h"
+#endif
 #include "../shared/outputs/ControllerEthernet.h"
 
 #include <curl/curl.h>
 
-#ifdef __WXMSW__
 #include "../shared/utils/CurlManager.h"
-#endif
 
 #include <log.h>
 
-#include "BaseController.h"
+#ifndef DISCOVERYONLY
 #include "Falcon.h"
 #include "FPP.h"
 #include "AlphaPix.h"
@@ -36,7 +36,7 @@
 #include "WLED.h"
 #include "ILightThat.h"
 #include "Experience.h"
-#include "utils/CurlManager.h"
+#endif
 
 #pragma region Constructors and Destructors
 BaseController::BaseController(const std::string& ip, const std::string &proxy) : _fppProxy(proxy), _ip(ip), _baseUrl("") {

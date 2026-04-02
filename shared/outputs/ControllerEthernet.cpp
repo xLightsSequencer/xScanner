@@ -15,7 +15,6 @@
 #include "Output.h"
 #include "UtilFunctions.h"
 #include "../shared/utils/SpecialOptions.h"
-#include "../models/OutputModelManager.h"
 #include "IPOutput.h"
 #include "E131Output.h"
 #include "ArtNetOutput.h"
@@ -26,10 +25,6 @@
 #include "TwinklyOutput.h"
 #include "OPCOutput.h"
 #include "../shared/controllers/ControllerCaps.h"
-#include "../models/ModelManager.h"
-#ifndef EXCLUDENETWORKUI
-#include "../models/Model.h"
-#endif
 #include "../shared/utils/ip_utils.h"
 
 #include <format>

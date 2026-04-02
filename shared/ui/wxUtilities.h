@@ -17,9 +17,7 @@
 #include <wx/event.h>    // wxDECLARE_EVENT, wxCommandEvent
 #include <wx/gdicmn.h>   // wxPoint, wxSize
 
-#include // "../utils/Color.h" -- removed
 #include "../shared/utils/UtilFunctions.h"
-#include // "../utils/xlImage.h" -- removed
 
 #include <nlohmann/json.hpp>
 
@@ -33,14 +31,6 @@ class wxFileName;
 class wxIPV4address;
 class wxArrayString;
 typedef wxColour wxColor;
-
-// wx<->xlColor conversions (implementations in wxUtilities.cpp)
-wxColour xlColorToWxColour(const xlColor& c);
-xlColor wxColourToXlColor(const wxColour& c);
-
-// wx<->xlImage conversions (implementations in wxUtilities.cpp)
-xlImage wxImageToXlImage(const wxImage& img);
-wxImage xlImageToWxImage(const xlImage& img);
 
 // UI events used by effect panels (moved from render/Effect.h to keep render core wx-free)
 wxDECLARE_EVENT(EVT_SETTIMINGTRACKS, wxCommandEvent);
@@ -97,7 +87,6 @@ nlohmann::json xLightsRequest(int xFadePort, const wxString& request, const std:
 bool xLightsRequest(std::string& result, int xFadePort, const wxString& request, const std::string& ipAddress = "127.0.0.1");
 
 wxImage ApplyOrientation(const wxImage& img, int orient);
-AnimatedImageData LoadGIFAnimationDataWx(const std::string& filename);
 
 std::string GetResourcesDirectory();
 

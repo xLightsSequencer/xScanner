@@ -11,7 +11,6 @@
 
 
 #include "ControllerSerial.h"
-#include "../models/OutputModelManager.h"
 #include "UtilFunctions.h"
 #include "../shared/utils/SpecialOptions.h"
 #include "../shared/controllers/ControllerCaps.h"
@@ -29,8 +28,6 @@
 #include "PixelNetOutput.h"
 #include "xxxSerialOutput.h"
 #include "GenericSerialOutput.h"
-#include "../models/ModelManager.h"
-
 #include <format>
 
 #include <log.h>

@@ -13,12 +13,10 @@
 #include "UtilFunctions.h"
 #include "Output.h"
 #include "OutputManager.h"
-#include "../models/OutputModelManager.h"
 #include "../shared/controllers/ControllerCaps.h"
 #include "ControllerEthernet.h"
 #include "ControllerNull.h"
 #include "ControllerSerial.h"
-#include "../models/Model.h"
 
 #include <numeric>
 

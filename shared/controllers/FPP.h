@@ -9,10 +9,16 @@
 
 #include <nlohmann/json.hpp>
 
+#ifndef DISCOVERYONLY
 #include "../models/ModelManager.h"
 #include "../models/ViewObjectManager.h"
 #include "ControllerUploadData.h"
+#endif
 #include "BaseController.h"
+
+class ModelManager;
+class ViewObjectManager;
+class ControllerCaps;
 
 class FSEQFile;
 typedef void CURL;
@@ -76,8 +82,10 @@ class FPP : public BaseController
     bool canZipUpload = false;
 
     wxWindow *parent = nullptr;
+#ifndef DISCOVERYONLY
     void setProgress(FPPUploadProgressDialog*d, wxGauge *g) { progressDialog = d; progress = g; }
     bool updateProgress(int val, bool yield);
+#endif
 
     
     std::list<std::string> messages;
@@ -177,8 +185,10 @@ class FPP : public BaseController
 #pragma endregion
 
 private:
+#ifndef DISCOVERYONLY
     FPPUploadProgressDialog *progressDialog = nullptr;
     wxGauge *progress = nullptr;
+#endif
     
     void DumpJSON(const nlohmann::json& json) const;
 
@@ -193,6 +203,7 @@ private:
     int PutToURL(const std::string& url, const std::vector<uint8_t>& val, const std::string& contentType = "application/octet-stream") const;
     int TransferToURL(const std::string& url, const std::vector<uint8_t>& val, const std::string& contentType, bool isPost) const;
 
+#ifndef DISCOVERYONLY
     bool uploadOrCopyFile(const std::string &filename,
                           const std::string &file,
                           const std::string &dir);
@@ -202,6 +213,7 @@ private:
                       const std::string &file,
                       const std::string &dir);
     bool callMoveFile(const std::string &filename);
+#endif
 
     bool parseSysInfo(nlohmann::json& v);
     void parseControllerType(nlohmann::json& v);

@@ -24,7 +24,6 @@
 #include "UtilFunctions.h"
 #include "../shared/ui/wxUtilities.h"
 #include "ControllerEthernet.h"
-#include "../models/OutputModelManager.h"
 #include "../shared/utils/ExternalHooks.h"
 #include "../shared/utils/ip_utils.h"
 

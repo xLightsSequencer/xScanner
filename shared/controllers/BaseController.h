@@ -14,8 +14,10 @@
 #include <string>
 #include <wx/intl.h>
 
+#ifndef DISCOVERYONLY
 #include "ControllerUploadData.h"
 #include "UtilClasses.h"
+#endif
 
 class ModelManager;
 class OutputManager;

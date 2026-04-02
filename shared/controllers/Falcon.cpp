@@ -16,7 +16,7 @@
 #include "../shared/outputs/Output.h"
 #include "../shared/outputs/OutputManager.h"
 
-#ifndef DISCOVERONLY
+#ifndef DISCOVERYONLY
 #include "ControllerUploadData.h"
 #include "../models/Model.h"
 #include "../models/ModelManager.h"

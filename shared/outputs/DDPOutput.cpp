@@ -16,7 +16,7 @@
 #include "OutputManager.h"
 #include "UtilFunctions.h"
 #include "../shared/ui/wxUtilities.h"
-#include "../models/OutputModelManager.h"
+
 #include "ControllerEthernet.h"
 #include "../shared/utils/ip_utils.h"
 
