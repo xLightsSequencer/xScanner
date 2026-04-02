@@ -101,26 +101,28 @@ void WorkManager::Stop()
 
 WorkManager::~WorkManager()
 {
-	while (_threadsHTTP.size() > 0) {
-		ScanThread* t = _threadsHTTP.back();
-		_threadsHTTP.pop_back();
+	// Signal all threads to terminate — they are detached so we cannot
+	// call Wait()/Delete(), but they check _terminate every ~1 s.
+	for (auto* t : _threadsHTTP) {
 		t->Terminate();
-		t->Kill();
+		t->TerminateWork();
+	}
+	for (auto* t : _threadsPing) {
+		t->Terminate();
+		t->TerminateWork();
+	}
+	for (auto* t : _threadsOther) {
+		t->Terminate();
+		t->TerminateWork();
 	}
 
-	while (_threadsPing.size() > 0) {
-		ScanThread* t = _threadsPing.back();
-		_threadsPing.pop_back();
-		t->Terminate();
-		t->Kill();
-	}
+	// Give detached threads time to exit on their own.
+	// They sleep up to 1 s between iterations, so 2 s is generous.
+	wxSleep(2);
 
-	while (_threadsOther.size() > 0) {
-		ScanThread* t = _threadsOther.back();
-		_threadsOther.pop_back();
-		t->Terminate();
-		t->Kill();
-	}
+	_threadsHTTP.clear();
+	_threadsPing.clear();
+	_threadsOther.clear();
 }
 
 wxThread::ExitCode ScanThread::Entry()
