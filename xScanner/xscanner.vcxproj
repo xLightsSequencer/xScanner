@@ -150,9 +150,6 @@
     <ClCompile Include="..\shared\utils\ip_utils.cpp" />
     <ClCompile Include="..\shared\utils\string_utils.cpp" />
     <ClCompile Include="..\shared\xScannerVersion.cpp" />
-    <ClCompile Include="..\json\wxJSON\jsonreader.cpp" />
-    <ClCompile Include="..\json\wxJSON\jsonval.cpp" />
-    <ClCompile Include="..\json\wxJSON\jsonwriter.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="ScanWork.cpp" />
     <ClCompile Include="xScannerApp.cpp" />
@@ -211,10 +208,6 @@
     <ClInclude Include="..\shared\utils\ip_utils.h" />
     <ClInclude Include="..\shared\utils\string_utils.h" />
     <ClInclude Include="..\shared\xScannerVersion.h" />
-    <ClInclude Include="..\json\wxJSON\jsonreader.h" />
-    <ClInclude Include="..\json\wxJSON\jsonval.h" />
-    <ClInclude Include="..\json\wxJSON\jsonwriter.h" />
-    <ClInclude Include="..\json\wxJSON\json_defs.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="ScanWork.h" />
     <ClInclude Include="xScannerApp.h" />
